@@ -1,0 +1,49 @@
+<div class="event-container">
+    <div class="header-section">
+        <h1 class="title">📅 Nos Événements</h1>
+        <p class="subtitle">Découvrez nos événements à venir et réservez votre place</p>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="events-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Lieu</th>
+                    <th>Prix</th>
+                    <th>Places</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (event of events(); track $index) {
+                    <tr>
+                        <td class="event-id">#{{ event.id }}</td>
+                        <td class="event-name">{{ event.name }}</td>
+                        <td class="event-description">{{ event.description }}</td>
+                        <td class="event-location">
+                            <span class="location-icon">📍</span>
+                            {{ event.location }}
+                        </td>
+                        <td class="event-price">{{ event.price }} DT</td>
+                        <td class="event-places">
+                            <span class="places-badge" [class.low-places]="event.nbPlaces <= 5" [class.no-places]="event.nbPlaces === 0">
+                                {{ event.nbPlaces }} places
+                            </span>
+                        </td>
+                        <td class="event-date">{{ event.date }}</td>
+                        <td class="event-action">
+                            <button (click)="reserve(event.id)" class="btn-reserve" [disabled]="event.nbPlaces === 0">
+                                <span class="btn-icon">🎫</span>
+                                Réserver
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
