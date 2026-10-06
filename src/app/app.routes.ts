@@ -9,7 +9,12 @@ export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: Home },
     { path: 'products', component: Product },
+    /*
     { path: 'events', component: Event },
     { path: 'detail/:id', component: DetailEvent },
+    */
+
+    {path : "events", loadChildren: () => import('./GestionEvent/EventRoute').then(m => m.EventRoute)},
+
     { path: '**', component: NotFound },
 ];

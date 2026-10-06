@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { EventM } from '../../models/event-m';
 
 @Component({
@@ -43,10 +43,15 @@ export class DetailEvent {
   //1 Injecter le service ActivatedRoute
   
   private rt = inject(ActivatedRoute);
+  private router = inject(Router);
 
   //2 Recuperer l'id depuis le url
 
   id = this.rt.snapshot.paramMap.get('id');
   //3 Recuperer l'event correspond a cet id 
   event = this.events().find(e => e.id == Number(this.id));
+  
+  backToEvent() {
+    this.router.navigate(['/events']);
+  }
 }
