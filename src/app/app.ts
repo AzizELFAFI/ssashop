@@ -4,7 +4,8 @@ import { Home } from './home/home';
 import { Navbar } from './navbar/navbar';
 import { Footer } from './footer/footer';
 import { Product } from './product/product';
-import { Event } from './event/event';
+import { Event } from './GestionEvent/event/event';
+
 
 @Component({
   selector: 'app-root',

@@ -36,6 +36,10 @@
                         </td>
                         <td class="event-date">{{ event.date }}</td>
                         <td class="event-action">
+                            <button class="btn-detail" routerLink="/detail/{{ event.id }}">
+                                <span class="btn-icon">👁️</span>
+                                Détails
+                            </button>
                             <button (click)="reserve(event.id)" class="btn-reserve" [disabled]="event.nbPlaces === 0">
                                 <span class="btn-icon">🎫</span>
                                 Réserver

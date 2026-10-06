@@ -130,6 +130,29 @@
 
 .event-action {
   text-align: center;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.btn-detail {
+  background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.btn-detail:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(23, 162, 184, 0.4);
 }
 
 .btn-reserve {

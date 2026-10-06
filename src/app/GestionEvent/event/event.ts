@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { EventM } from '../models/event-m';
+import { RouterLink } from '@angular/router';
+import { EventM } from '../../models/event-m';
 
 @Component({
   selector: 'app-event',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './event.html',
   styleUrl: './event.css',
 })
