@@ -2,6 +2,10 @@
     <div class="header-section">
         <h1 class="title">📅 Nos Événements</h1>
         <p class="subtitle">Découvrez nos événements à venir et réservez votre place</p>
+        <button class="btn-add" (click)="showAddForm = true">
+            <span class="btn-icon">➕</span>
+            Ajouter un événement
+        </button>
     </div>
 
     <div class="table-wrapper">
@@ -50,4 +54,93 @@
             </tbody>
         </table>
     </div>
+
+    @if (showAddForm) {
+        <div class="modal-overlay" (click)="showAddForm = false">
+            <div class="modal-content" (click)="$event.stopPropagation()">
+                <div class="modal-header">
+                    <h2>Ajouter un nouvel événement</h2>
+                    <button class="btn-close" (click)="showAddForm = false">✕</button>
+                </div>
+                <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="event-form">
+                    <div class="form-group">
+                        <label for="name">Nom de l'événement</label>
+                        <input type="text" id="name" formControlName="name" required>
+                        @if (getName()?.invalid && getName()?.touched) {
+                            <div class="alert alert-danger">
+                                @if (getName()?.errors?.['required']) {
+                                    <p>Le nom est obligatoire</p>
+                                }
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" formControlName="description" required></textarea>
+                        @if (getDescription()?.invalid && getDescription()?.touched) {
+                            <div class="alert alert-danger">
+                                @if (getDescription()?.errors?.['required']) {
+                                    <p>La description est obligatoire</p>
+                                }
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Lieu</label>
+                        <input type="text" id="location" formControlName="location" required>
+                        @if (getLocation()?.invalid && getLocation()?.touched) {
+                            <div class="alert alert-danger">
+                                @if (getLocation()?.errors?.['required']) {
+                                    <p>Le lieu est obligatoire</p>
+                                }
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Prix (DT)</label>
+                        <input type="number" id="price" formControlName="price" required min="0">
+                        @if (getPrice()?.invalid && getPrice()?.touched) {
+                            <div class="alert alert-danger">
+                                @if (getPrice()?.errors?.['required']) {
+                                    <p>Le prix est obligatoire</p>
+                                }
+                                @if (getPrice()?.errors?.['min']) {
+                                    <p>Le prix doit être positif</p>
+                                }
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <label for="nbPlaces">Nombre de places</label>
+                        <input type="number" id="nbPlaces" formControlName="nbPlaces" required min="1">
+                        @if (getNbPlaces()?.invalid && getNbPlaces()?.touched) {
+                            <div class="alert alert-danger">
+                                @if (getNbPlaces()?.errors?.['required']) {
+                                    <p>Le nombre de places est obligatoire</p>
+                                }
+                                @if (getNbPlaces()?.errors?.['min']) {
+                                    <p>Le nombre de places doit être au moins 1</p>
+                                }
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" formControlName="date" required>
+                        @if (getDate()?.invalid && getDate()?.touched) {
+                            <div class="alert alert-danger">
+                                @if (getDate()?.errors?.['required']) {
+                                    <p>La date est obligatoire</p>
+                                }
+                            </div>
+                        }
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" (click)="showAddForm = false">Annuler</button>
+                        <button type="submit" class="btn-submit" [disabled]="eventForm.invalid">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
 </div>
